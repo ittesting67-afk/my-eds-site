@@ -1,6 +1,6 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: #000;
+  background-color: #1A1A24;
   color: #fff;
   width: 100%;
   z-index: 2;
@@ -14,7 +14,8 @@ header nav {
   justify-content: space-between;
   gap: 24px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1264px;
+  width: 100%;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
@@ -25,13 +26,26 @@ header nav[aria-expanded='true'] {
   overflow: visible;
 }
 
-.nav-brand .default-content-wrapper ul {
+header nav .nav-brand .default-content-wrapper {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
 }
 
-.nav-brand .default-content-wrapper ul li {
+header nav .nav-brand .default-content-wrapper ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 0 0 auto;
+  padding-left: 0;
+}
+
+header nav .nav-brand .default-content-wrapper ul li {
   list-style-type: none;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 @media (width >= 900px) {
@@ -44,6 +58,8 @@ header nav[aria-expanded='true'] {
     justify-content: space-between;
     gap: 0 32px;
     max-width: 1264px;
+    width: 100%;
+    margin: auto;
     padding: 0 32px;
   }
 
@@ -138,7 +154,8 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 
 /* brand */
 header .nav-brand {
-  flex-basis: 128px;
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
@@ -152,8 +169,12 @@ header nav .nav-brand img {
 /* sections */
 header nav .nav-sections {
   flex: 1 1 auto;
-  display: block;
+  display: flex;
   visibility: visible;
+}
+
+header nav .nav-sections .default-content-wrapper {
+  width: 100%;
 }
 
 header nav .nav-sections ul {
@@ -165,7 +186,9 @@ header nav .nav-sections ul {
 header nav .nav-sections .default-content-wrapper > ul {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 24px;
+  width: 100%;
   margin: 0;
 }
 

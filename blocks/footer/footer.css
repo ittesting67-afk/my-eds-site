@@ -1,20 +1,69 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #1A1A24;
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
 }
 
 footer .footer > div {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  max-width: 1248px;
+  padding: 24px;
+}
+
+footer .footer .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+footer .footer .default-content-wrapper ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 0 0 auto;
+  padding-left: 0;
+  list-style: none;
+  font-size: 16px;
+}
+
+footer .footer .default-content-wrapper ul li {
+  list-style-type: none;
+  font-weight: 400;
 }
 
 footer .footer p {
   margin: 0;
+  line-height: 1;
+}
+
+footer .footer a:any-link {
+  color: currentcolor;
+}
+
+@media (width < 900px) {
+  footer .footer > div,
+  footer .footer .default-content-wrapper {
+    flex-wrap: wrap;
+  }
+
+  footer .footer .default-content-wrapper ul {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    max-width: 1264px;
+    padding: 24px 32px;
   }
 }
