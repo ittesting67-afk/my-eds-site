@@ -3,8 +3,6 @@ import { loadFragment } from '../fragment/fragment.js';
 
 const MQ_DESKTOP = window.matchMedia('(min-width: 900px)');
 
-/* ─── Helpers ─────────────────────────────────────────────────────────── */
-
 function toggleAllSections(navSections, expanded = false) {
   navSections
     ?.querySelectorAll('.nav-sections .default-content-wrapper > ul > li')
@@ -46,8 +44,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     nav.removeEventListener('focusout', onFocusLost);
   }
 }
-
-/* ─── Event handlers ──────────────────────────────────────────────────── */
 
 function onEscapeKey(e) {
   if (e.code !== 'Escape') return;
@@ -102,8 +98,6 @@ function buildLogos() {
   return { desktop, mobile };
 }
 
-/* ─── Main decorator ──────────────────────────────────────────────────── */
-
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
@@ -117,7 +111,6 @@ export default async function decorate(block) {
     nav.children[i]?.classList.add(`nav-${cls}`);
   });
 
-  // ── Brand / logos ──────────────────────────────────────────────────────
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) {
     const brandLink = navBrand.querySelector('.button');
@@ -130,7 +123,6 @@ export default async function decorate(block) {
     navBrand.prepend(desktop);
   }
 
-  // ── Nav section dropdowns ──────────────────────────────────────────────
   const navSections = nav.querySelector('.nav-sections');
   navSections
     ?.querySelectorAll(':scope .default-content-wrapper > ul > li')
@@ -144,7 +136,6 @@ export default async function decorate(block) {
       });
     });
 
-  // ── Hamburger ──────────────────────────────────────────────────────────
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = `
@@ -154,7 +145,6 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
 
-  // ── Init ───────────────────────────────────────────────────────────────
   nav.setAttribute('aria-expanded', 'false');
   toggleMenu(nav, navSections, MQ_DESKTOP.matches);
   MQ_DESKTOP.addEventListener('change', () => {
