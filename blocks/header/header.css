@@ -1,24 +1,3 @@
-/*
-  DOM order (JS prepends hamburger before nav-brand):
-    nav
-    ├── div.nav-hamburger          ← first in DOM
-    └── div.nav-brand
-        ├── img.nav-logo--desktop
-        ├── img.nav-logo--mobile
-        └── div.default-content-wrapper
-            └── ul > li > a        ← nav links
-
-  Strategy: every rule lives in exactly ONE place.
-  Mobile-only rules   → inside @media (max-width: 899px)
-  Desktop-only rules  → inside @media (min-width: 900px)
-  Shared rules        → outside any media query
-  No rule overrides another rule of the same specificity.
-*/
-
-/* ═══════════════════════════════════════════════════════
-   SHARED — applies at all viewport widths
-═══════════════════════════════════════════════════════ */
-
 header .nav-wrapper {
   background-color: #1a1a24;
   color: #fff;
@@ -31,7 +10,6 @@ header nav {
   display: flex;
   align-items: center;
   margin: 0 auto;
-  max-width: 1264px;
   width: 100%;
   height: var(--nav-height);
   font-family: var(--body-font-family);
@@ -48,24 +26,20 @@ header nav a:any-link {
   text-decoration: none;
 }
 
-/* ── Brand container ── */
-
 header nav .nav-brand {
   display: flex;
   align-items: center;
+  height: 100px;
 }
-
-/* ── Both logos share these base rules ── */
 
 header nav .nav-logo--desktop,
 header nav .nav-logo--mobile {
   display: block;
+  width: 40px;
   height: 40px;
   width: auto;
   flex-shrink: 0;
 }
-
-/* ── Hamburger button shared styles ── */
 
 header nav .nav-hamburger button {
   display: flex;
@@ -98,7 +72,6 @@ header nav .nav-hamburger-icon::after {
   background: currentcolor;
 }
 
-/* Hamburger closed (≡) */
 header nav[aria-expanded='false'] .nav-hamburger-icon,
 header nav[aria-expanded='false'] .nav-hamburger-icon::before,
 header nav[aria-expanded='false'] .nav-hamburger-icon::after {
@@ -110,7 +83,6 @@ header nav[aria-expanded='false'] .nav-hamburger-icon::after {
 header nav[aria-expanded='false'] .nav-hamburger-icon::before { top: -6px; }
 header nav[aria-expanded='false'] .nav-hamburger-icon::after  { top:  6px; }
 
-/* Hamburger open (×) */
 header nav[aria-expanded='true'] .nav-hamburger-icon {
   height: 22px;
   background: transparent;
@@ -138,15 +110,9 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Tools ── */
-
 header nav .nav-tools {
   flex-shrink: 0;
 }
-
-/* ═══════════════════════════════════════════════════════
-   MOBILE + TABLET  max-width: 899px
-═══════════════════════════════════════════════════════ */
 
 @media (max-width: 899px) {
   header .nav-wrapper {
@@ -159,7 +125,6 @@ header nav .nav-tools {
     padding: 0 24px;
   }
 
-  /* Hamburger is first in DOM — push it to the right visually with order */
   header nav .nav-hamburger {
     order: 2;
     margin-left: auto;
@@ -169,28 +134,22 @@ header nav .nav-tools {
     flex-shrink: 0;
   }
 
-  /* Brand: logo only (links hidden until menu opens) */
   header nav .nav-brand {
     order: 1;
     flex: 0 0 auto;
   }
 
-  /* Hide desktop logo on mobile/tablet */
   header nav .nav-logo--desktop {
     display: none;
   }
 
-  /* Mobile logo always visible on mobile/tablet */
   header nav .nav-logo--mobile {
     display: block;
   }
 
-  /* Links hidden by default */
   header nav .nav-brand .default-content-wrapper {
     display: none;
   }
-
-  /* ── Mobile menu panel (hamburger open) ── */
 
   header nav.nav-open .nav-brand .default-content-wrapper {
     display: block;
@@ -210,7 +169,7 @@ header nav .nav-tools {
     flex-direction: column;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 24px;
   }
 
   header nav.nav-open .nav-brand .default-content-wrapper ul li {
@@ -225,14 +184,10 @@ header nav .nav-tools {
   header nav.nav-open .nav-brand .default-content-wrapper ul li a {
     display: block;
     padding: 14px 0;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 400;
   }
 }
-
-/* ═══════════════════════════════════════════════════════
-   DESKTOP  min-width: 900px
-═══════════════════════════════════════════════════════ */
 
 @media (min-width: 900px) {
   header .nav-wrapper {
@@ -243,12 +198,10 @@ header nav .nav-tools {
     padding: 0 32px;
   }
 
-  /* Hide hamburger entirely */
   header nav .nav-hamburger {
     display: none;
   }
 
-  /* Brand stretches the full width: logo left, links right */
   header nav .nav-brand {
     flex: 1 1 auto;
     justify-content: space-between;
@@ -257,19 +210,19 @@ header nav .nav-tools {
     width: 100%;
   }
 
-  /* Desktop logo always visible on desktop */
   header nav .nav-logo--desktop {
     display: block;
+    width: 150px;
+    height: 85px;
   }
 
-  /* Hide mobile logo on desktop */
   header nav .nav-logo--mobile {
     display: none;
   }
 
-  /* Links always visible inline */
   header nav .nav-brand .default-content-wrapper {
     display: flex;
+    height: 100%;
     align-items: center;
     margin-left: auto;
   }
@@ -281,18 +234,18 @@ header nav .nav-tools {
     gap: 2rem;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding-top: 24px;
   }
 
   header nav .nav-brand .default-content-wrapper ul li {
     list-style: none;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
   }
 
   header nav .nav-brand .default-content-wrapper ul li a {
     display: inline;
-    font-size: 14px;
+    font-size: 16px;
     white-space: nowrap;
     transition: opacity 0.15s;
   }
@@ -300,8 +253,6 @@ header nav .nav-tools {
   header nav .nav-brand .default-content-wrapper ul li a:hover {
     opacity: 0.7;
   }
-
-  /* ── Dropdowns ── */
 
   header nav .nav-brand .default-content-wrapper > ul > li.nav-drop {
     position: relative;

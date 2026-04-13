@@ -88,28 +88,17 @@ function onNavDropKeydown(e) {
   focused.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
 }
 
-/* ─── Logo builder ────────────────────────────────────────────────────── */
-
-/**
- * Returns two <img> elements — swap src values to match your asset paths.
- *   nav-logo--desktop  shown on ≥900 px  (full EY lockup + tagline)
- *   nav-logo--mobile   shown on <900 px  (compact EY icon)
- */
 function buildLogos() {
   const desktop = document.createElement('img');
   desktop.src = '/icons/logo-ey-icon.svg';
   desktop.alt = 'EY – Shape the future with confidence';
   desktop.className = 'nav-logo nav-logo--desktop';
-  desktop.width = 120;
-  desktop.height = 40;
 
   const mobile = document.createElement('img');
   mobile.src = '/icons/ey-icon-small.svg';
   mobile.alt = 'EY';
   mobile.className = 'nav-logo nav-logo--mobile';
-  mobile.width = 40;
-  mobile.height = 40;
-
+  
   return { desktop, mobile };
 }
 
