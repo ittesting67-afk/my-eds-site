@@ -101,6 +101,18 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+.hero .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero .hero-cta.secondary:any-link {
+  border-color: #fff;
+  background-color: transparent;
+}
+
 .hero .hero-cta:hover,
 .hero .hero-cta:focus-visible {
   background-color: #fff;
