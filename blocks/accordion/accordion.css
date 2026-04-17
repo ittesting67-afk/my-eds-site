@@ -1,5 +1,6 @@
 .accordion {
   width: 100%;
+  background-color: #33333E;
 }
 
 .accordion-item {
@@ -16,17 +17,16 @@
 
 .accordion-trigger {
   width: 100%;
+  background: transparent;
+  border: 0;
+  color: #DEDEE2;
+  font-size: 30px;
+  font-weight: 400;
+  text-align: left;
+  padding: 12px 10px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 16px 0;
-  border: 0;
-  background: transparent;
-  font: inherit;
-  font-weight: 600;
-  text-align: left;
-  color: inherit;
   cursor: pointer;
 }
 
