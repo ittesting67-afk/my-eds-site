@@ -11,18 +11,22 @@
  */
 
 :root {
+  --bg-section-gap: 72px;
+  --section-gap: var(--size-48);
+
   /* colors */
   --background-color: white;
   --light-color: #f8f8f8;
   --dark-color: #505050;
-  --text-color: #131313;
+  --text-color-dark: #131313;
+  --text-color : #FFFFFF;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
   --yellow: #FFE600;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: 'EYInterstate', 'Lato', sans-serif;
+  --heading-font-family: 'EYInterstate', 'Lato', sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -109,6 +113,7 @@ h6 {
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
   font-weight: 600;
+  color: var(--text-color);
   line-height: 1.25;
   scroll-margin: 40px;
 }
@@ -145,6 +150,8 @@ pre {
 
 main > div {
   margin: 40px 16px;
+  background-color: #1A1A24;
+  padding: var(--bg-section-gap) 0;
 }
 
 input,
