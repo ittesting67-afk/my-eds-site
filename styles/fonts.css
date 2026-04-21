@@ -1,5 +1,69 @@
 /* stylelint-disable max-line-length */
 @font-face {
+  font-family: 'EYInterstate';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-LIGHT.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EYInterstate';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-LIGHTITALIC.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EYInterstate';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-REGULAR.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EYInterstate';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-ITALIC.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EYInterstate';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-LIGHTBOLD.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EYInterstate';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-LIGHTBOLDIT.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EYInterstate';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-BOLD.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EYInterstate';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/EYINTERSTATE-BOLDITALIC.TTF') format('truetype');
+}
+
+@font-face {
   font-family: roboto-condensed;
   font-style: normal;
   font-weight: 700;
