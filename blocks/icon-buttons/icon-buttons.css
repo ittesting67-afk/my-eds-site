@@ -1,0 +1,94 @@
+.icon-buttons {
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-buttons .icon-buttons-media {
+  line-height: 0;
+}
+
+.icon-buttons .icon-buttons-media picture,
+.icon-buttons .icon-buttons-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.icon-buttons .icon-buttons-media img {
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.icon-buttons .icon-buttons-list {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 70%) 68%, rgb(0 0 0 / 85%) 100%);
+}
+
+.icon-buttons .icon-buttons-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 70px;
+  padding: 12px 10px;
+  background: linear-gradient(180deg, rgb(0 0 0 / 14%) 0%, rgb(0 0 0 / 70%) 100%);
+  color: #fff;
+  text-align: center;
+}
+
+.icon-buttons .icon-buttons-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+}
+
+.icon-buttons .icon-buttons-icon .icon,
+.icon-buttons .icon-buttons-icon img,
+.icon-buttons .icon-buttons-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-buttons .icon-buttons-label {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.icon-buttons .icon-buttons-label > * {
+  margin: 0;
+}
+
+@media (width >= 600px) {
+  .icon-buttons .icon-buttons-media img {
+    min-height: 260px;
+  }
+
+  .icon-buttons .icon-buttons-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    align-items: end;
+    gap: 0;
+    padding: 22px 24px;
+  }
+
+  .icon-buttons .icon-buttons-item {
+    min-height: 110px;
+    background: linear-gradient(180deg, rgb(0 0 0 / 10%) 0%, rgb(0 0 0 / 66%) 100%);
+  }
+
+  .icon-buttons .icon-buttons-label {
+    font-size: 24px;
+  }
+}
