@@ -331,3 +331,55 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+.section.image-container .image-wrapper:has(.full-width) {
+  max-width: none;
+  padding: 0;
+}
+
+.section.image-container:has(.full-width) {
+  padding: 0;
+  margin: 0;
+}
+
+.section .default-content-wrapper h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #eaeaea;
+  position: relative;
+  display: inline-block;
+}
+
+.section .default-content-wrapper h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  width: 50%; 
+  height: 4px;
+  background: var(--yellow);
+  border-radius: 2px;
+}
+
+.section p {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.section .columns p:first-of-type, 
+.section .default-content-wrapper p:first-of-type {
+  margin-top: 30px;
+}
+
+.section .default-content-wrapper p > em > strong {
+  font-size: 28px;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--yellow);
+}
+
+.section .default-content-wrapper p > em {
+  font-size: 18px;
+  font-weight: 700;
+  font-style: normal;
+}
