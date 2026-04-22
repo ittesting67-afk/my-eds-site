@@ -148,8 +148,8 @@ pre {
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
+main > div:not(.hero-container) {
+  /* margin: 40px 16px; */
   background-color: #1A1A24;
   padding: var(--bg-section-gap) 0;
 }
@@ -305,7 +305,7 @@ main img {
 
 /* sections */
 main > .section {
-  margin: 40px 0;
+  /* margin: 40px 0; */
 }
 
 main > .section > div {
