@@ -1,0 +1,41 @@
+.nested-columns {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.nested-columns-col {
+  display: flex;
+  align-items: anchor-center;
+  /* flex-direction: column; */
+  gap: 48px;
+}
+
+@media (width >= 900px) {
+  .nested-columns {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+  }
+
+  .nested-columns-col {
+    flex: 1;
+  }
+}
+
+/*
+ * When nested `.section` nodes move inside this block, we need to re-apply
+ * the same max-width/padding rules used for `main > .section > div`.
+ */
+.nested-columns-col > .section > div {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+@media (width >= 900px) {
+  .nested-columns-col > .section > div {
+    padding: 0 32px;
+  }
+}

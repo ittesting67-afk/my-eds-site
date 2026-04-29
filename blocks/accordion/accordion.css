@@ -7,6 +7,53 @@
   margin-top: 30px;
 }
 
+.accordion-columns-inner {
+  box-sizing: border-box;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (width >= 600px) {
+  .accordion-columns-inner {
+    padding: 0 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .section.accordion-container.has-column-layout .accordion-columns-inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  .section.accordion-container.has-column-layout .accordion-columns-inner > .default-content-wrapper {
+    grid-column: 1;
+    align-self: start;
+    min-width: 0;
+    justify-self: stretch;
+  }
+
+  .section.accordion-container.has-column-layout .accordion-columns-inner > .accordion-wrapper {
+    grid-column: 2;
+    margin-top: 0;
+    align-self: start;
+    min-width: 0;
+    justify-self: stretch;
+  }
+
+  /* If the authored accordion block is marked as left, flip the grid. */
+  .section.accordion-container.has-column-layout.is-accordion-left .accordion-columns-inner > .default-content-wrapper {
+    grid-column: 2;
+  }
+
+  .section.accordion-container.has-column-layout.is-accordion-left .accordion-columns-inner > .accordion-wrapper {
+    grid-column: 1;
+  }
+}
+
 .accordion-item {
   border-top: 1px solid #d9d9d9;
 }

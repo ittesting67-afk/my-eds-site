@@ -17,6 +17,30 @@ function toggleAccordion(e) {
 export default async function decorate(block) {
   const accordionSections = [];
   const section = block.closest('.section');
+  if (section?.classList?.contains('accordion-container')) {
+    const hasColumnLeft = block.classList.contains('column-left');
+    const hasColumnRight = block.classList.contains('column-right');
+    const hasColumnLayout = hasColumnLeft || hasColumnRight;
+
+    // Only turn on the desktop two-column layout when explicitly authored.
+    section.classList.toggle('has-column-layout', hasColumnLayout);
+    section.classList.toggle('is-accordion-left', hasColumnLeft);
+
+    // Create a single wrapper that controls max-width + grid layout.
+    if (hasColumnLayout) {
+      const existingInner = section.querySelector(':scope > .accordion-columns-inner');
+      if (!existingInner) {
+        const defaultContent = section.querySelector(':scope > .default-content-wrapper');
+        const accordionWrapper = section.querySelector(':scope > .accordion-wrapper');
+        if (defaultContent && accordionWrapper) {
+          const inner = document.createElement('div');
+          inner.className = 'accordion-columns-inner';
+          inner.append(defaultContent, accordionWrapper);
+          section.append(inner);
+        }
+      }
+    }
+  }
 
   let nextSection = section.nextElementSibling;
   while (nextSection) {
