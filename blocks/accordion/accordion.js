@@ -14,14 +14,6 @@ function toggleAccordion(e) {
   button.closest('.accordion-item')?.classList.toggle('is-open', !expanded);
 }
 
-/**
- * Decorate the accordion block.
- *
- * Assumes:
- * - the accordion block lives in its own section
- * - the accordion item sections follow it as siblings
- * - each item section has data-accordion-item-label="..."
- */
 export default async function decorate(block) {
   const accordionSections = [];
   const section = block.closest('.section');
@@ -44,6 +36,7 @@ export default async function decorate(block) {
   const panelBlocks = [];
 
   accordionSections.forEach(([label, sourceSection], i) => {
+    const isOpenByDefault = i === 0;
     const safeLabel = toClassName(label);
     const buttonId = `${accordionPrefix}-button-${safeLabel}-${i}`;
     const panelId = `${accordionPrefix}-panel-${safeLabel}-${i}`;
@@ -58,7 +51,7 @@ export default async function decorate(block) {
     button.type = 'button';
     button.id = buttonId;
     button.className = 'accordion-trigger';
-    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-expanded', String(isOpenByDefault));
     button.setAttribute('aria-controls', panelId);
     button.textContent = label;
     button.addEventListener('click', toggleAccordion);
@@ -70,7 +63,7 @@ export default async function decorate(block) {
     panel.className = 'accordion-panel';
     panel.setAttribute('role', 'region');
     panel.setAttribute('aria-labelledby', buttonId);
-    panel.hidden = true;
+    panel.hidden = !isOpenByDefault;
 
     [...sourceSection.children].forEach((child) => {
       panel.appendChild(child);
@@ -79,6 +72,7 @@ export default async function decorate(block) {
 
     sourceSection.remove();
 
+    item.classList.toggle('is-open', isOpenByDefault);
     item.append(heading, panel);
     accordion.appendChild(item);
   });

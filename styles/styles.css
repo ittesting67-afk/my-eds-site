@@ -287,9 +287,13 @@ button.button.accent:disabled:focus-visible {
 }
 
 main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section.image-container picture img {
+  border-bottom: 3px solid #FFE600;
 }
 
 .icon {
