@@ -1,6 +1,85 @@
 .accordion {
   width: 100%;
-  background-color: #33333E;
+  background-color: #23232F;
+}
+
+.section.accordion-container .accordion-wrapper {
+  margin-top: 30px;
+}
+
+.accordion-columns-inner {
+  box-sizing: border-box;
+  max-width: var(--max-width-container);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.accordion-columns-inner > h1 {
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--yellow);
+}
+
+.section.accordion-container .accordion-column-heading {
+  margin: 0 0 16px;
+  color: #f5f5f7;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.section.accordion-container .accordion-section-heading {
+  margin: 0 0 20px;
+}
+
+@media (width >= 600px) {
+  .accordion-columns-inner {
+    padding: 0 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .section.accordion-container.has-column-layout .accordion-columns-inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  .section.accordion-container.has-column-layout .accordion-columns-inner > .accordion-section-heading {
+    grid-column: 1 / -1;
+    margin-bottom: 24px;
+  }
+
+  .section.accordion-container.has-column-layout .accordion-columns-inner > .default-content-wrapper {
+    grid-column: 1;
+    align-self: start;
+    min-width: 0;
+    justify-self: stretch;
+  }
+
+  .section.accordion-container.has-column-layout .accordion-columns-inner > .accordion-wrapper {
+    grid-column: 2;
+    margin-top: 0;
+    align-self: start;
+    min-width: 0;
+    justify-self: stretch;
+  }
+
+  .section.accordion-container.has-column-layout .accordion-columns-inner > .default-content-wrapper > .accordion-column-heading,
+  .section.accordion-container.has-column-layout .accordion-columns-inner > .accordion-wrapper > .accordion-column-heading {
+    margin-bottom: 20px;
+  }
+
+  /* If the authored accordion block is marked as left, flip the grid. */
+  .section.accordion-container.has-column-layout.is-accordion-left .accordion-columns-inner > .default-content-wrapper {
+    grid-column: 2;
+  }
+
+  .section.accordion-container.has-column-layout.is-accordion-left .accordion-columns-inner > .accordion-wrapper {
+    grid-column: 1;
+  }
 }
 
 .accordion-item {
@@ -20,7 +99,7 @@
   background: transparent;
   border: 0;
   color: #DEDEE2;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 400;
   text-align: left;
   padding: 12px 10px 14px;
@@ -42,7 +121,7 @@
 }
 
 .accordion-panel {
-  padding: 0 0 16px;
+  padding: 55px 32px 40px;
 }
 
 .accordion-panel[hidden] {

@@ -1,0 +1,64 @@
+.profile-card .profile-card-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-card .profile-card-media {
+  flex: 0 0 88px;
+  width: 88px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--light-color);
+}
+
+.profile-card .profile-card-media picture,
+.profile-card .profile-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-card .profile-card-media img {
+  object-fit: cover;
+}
+
+.profile-card .profile-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-card .profile-card-name,
+.profile-card .profile-card-position {
+  margin: 0;
+}
+
+.profile-card .profile-card-name {
+  font-size: var(--heading-font-size-xs);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.profile-card .profile-card-position {
+  font-size: var(--body-font-size-s);
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.profile-card .profile-card-name > *,
+.profile-card .profile-card-position > * {
+  margin: 0;
+}
+
+@media (width >= 600px) {
+  .profile-card .profile-card-item {
+    gap: 20px;
+  }
+
+  .profile-card .profile-card-media {
+    flex-basis: 104px;
+    width: 104px;
+  }
+}
