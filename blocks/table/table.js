@@ -11,6 +11,8 @@ function buildCell(rowIndex) {
 }
 
 export default async function decorate(block) {
+  const tableWrapper = document.createElement('div');
+  tableWrapper.className = 'table-wrapper';
   const table = document.createElement('table');
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
@@ -33,6 +35,6 @@ export default async function decorate(block) {
       row.append(cell);
     });
   });
-  block.innerHTML = '';
-  block.append(table);
+  tableWrapper.append(table);
+  block.replaceChildren(tableWrapper);
 }

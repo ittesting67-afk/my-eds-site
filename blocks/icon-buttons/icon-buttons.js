@@ -17,7 +17,9 @@ export default function decorate(block) {
 
   rows.forEach((row) => {
     const [iconCell, labelCell] = [...row.children];
-    const iconContent = iconCell?.firstElementChild || iconCell;
+    const iconContent = iconCell?.querySelector(':scope > .icon, :scope > img, :scope > svg, :scope > p > .icon, :scope > p > img, :scope > p > svg')
+      || iconCell?.firstElementChild
+      || iconCell;
     const labelMarkup = labelCell?.innerHTML?.trim();
     if (!iconContent && !labelMarkup) return;
 

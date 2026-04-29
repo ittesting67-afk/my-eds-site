@@ -14,6 +14,8 @@
   --bg-section-gap: 72px;
   --section-gap: var(--size-48);
 
+  --max-width-container: calc(100% - 20px);
+
   /* colors */
   --background-color: white;
   --light-color: #f8f8f8;
@@ -58,6 +60,12 @@
   src: local('Arial');
 }
 
+@media (width >= 768px) {
+  :root {
+    --max-width-container: calc(100% - 28px);
+  }
+}
+
 @media (width >= 900px) {
   :root {
     /* body sizes */
@@ -72,6 +80,12 @@
     --heading-font-size-m: 22px;
     --heading-font-size-s: 20px;
     --heading-font-size-xs: 18px;
+  }
+}
+
+@media (width >= 1440px) {
+  :root {
+    --max-width-container: 1200px;
   }
 }
 
@@ -313,9 +327,9 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--max-width-container);
   margin: auto;
-  padding: 0 24px;
+  padding: 24px;
 }
 
 main > .section:first-of-type {

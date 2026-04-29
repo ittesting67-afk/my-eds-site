@@ -2,6 +2,35 @@ import { loadBlock, toClassName } from '../../scripts/aem.js';
 
 let accordionIdx = 0;
 
+function getColumnHeadings(block) {
+  const headings = {};
+  [...block.children].forEach((row) => {
+    const [keyCell, valueCell] = row.children;
+    if (!keyCell || !valueCell) return;
+
+    const key = toClassName(keyCell.textContent || '');
+    const value = (valueCell.textContent || '').trim();
+    if (!value) return;
+
+    if (key === 'column-left-heading' || key === 'column-leftt-heading') {
+      headings.columnLeftHeading = value;
+    } else if (key === 'column-right-heading') {
+      headings.columnRightHeading = value;
+    }
+  });
+  return headings;
+}
+
+function appendColumnHeading(container, text, side) {
+  if (!container || !text) return;
+  if (container.querySelector(`:scope > .accordion-column-heading.accordion-column-heading-${side}`)) return;
+
+  const heading = document.createElement('h3');
+  heading.className = `accordion-column-heading accordion-column-heading-${side}`;
+  heading.textContent = text;
+  container.prepend(heading);
+}
+
 function toggleAccordion(e) {
   const button = e.currentTarget;
   const panelId = button.getAttribute('aria-controls');
@@ -17,6 +46,7 @@ function toggleAccordion(e) {
 export default async function decorate(block) {
   const accordionSections = [];
   const section = block.closest('.section');
+  const { columnLeftHeading, columnRightHeading } = getColumnHeadings(block);
   if (section?.classList?.contains('accordion-container')) {
     const hasColumnLeft = block.classList.contains('column-left');
     const hasColumnRight = block.classList.contains('column-right');
@@ -28,16 +58,29 @@ export default async function decorate(block) {
 
     // Create a single wrapper that controls max-width + grid layout.
     if (hasColumnLayout) {
+      const defaultContent = section.querySelector(':scope > .default-content-wrapper');
+      const accordionWrapper = section.querySelector(':scope > .accordion-wrapper');
+      let sectionHeading = defaultContent?.querySelector(':scope > h1');
+      if (sectionHeading) {
+        sectionHeading.classList.add('accordion-section-heading');
+      } else {
+        sectionHeading = section.querySelector(':scope > .accordion-columns-inner > .accordion-section-heading');
+      }
+
+      appendColumnHeading(defaultContent, columnLeftHeading, 'left');
+      appendColumnHeading(accordionWrapper, columnRightHeading, 'right');
+
       const existingInner = section.querySelector(':scope > .accordion-columns-inner');
       if (!existingInner) {
-        const defaultContent = section.querySelector(':scope > .default-content-wrapper');
-        const accordionWrapper = section.querySelector(':scope > .accordion-wrapper');
         if (defaultContent && accordionWrapper) {
           const inner = document.createElement('div');
           inner.className = 'accordion-columns-inner';
+          if (sectionHeading) inner.append(sectionHeading);
           inner.append(defaultContent, accordionWrapper);
           section.append(inner);
         }
+      } else if (sectionHeading && sectionHeading.parentElement !== existingInner) {
+        existingInner.prepend(sectionHeading);
       }
     }
   }

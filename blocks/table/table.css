@@ -8,9 +8,10 @@
 }
 
 .table.block[data-block-name="table"] table {
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
   font-family: inherit;
   font-size: 14px;
   line-height: 1.5;
@@ -19,8 +20,9 @@
 
 .table.block[data-block-name="table"] thead th,
 .table.block[data-block-name="table"] tbody td {
-  border: 1px solid #747480;;
+  border: 1px solid #747480;
   padding: 12px 16px;
+  min-width: 160px;
   vertical-align: middle;
   background: transparent;
   word-break: break-word;
