@@ -1,9 +1,18 @@
+.section.icon-buttons-wrapper {
+  max-width: unset;
+  margin: auto;
+  padding: 0;
+}
+
 .icon-buttons {
   position: relative;
   overflow: hidden;
 }
 
 .icon-buttons .icon-buttons-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   line-height: 0;
 }
 
@@ -15,18 +24,17 @@
 }
 
 .icon-buttons .icon-buttons-media img {
-  min-height: 320px;
   object-fit: cover;
 }
 
 .icon-buttons .icon-buttons-list {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   gap: 8px;
+  height: 968.63px;
   padding: 16px;
   isolation: isolate;
 }
@@ -34,10 +42,8 @@
 .icon-buttons .icon-buttons-list::before {
   content: '';
   position: absolute;
-  right: 75px;
-  top: 0;
-  left: 75px;
-  height: clamp(200px, 38%, 220px);
+  inset: 60px;
+  height: 900px;
   background: linear-gradient(180deg, rgb(8 20 44 / 40%) 0%, rgb(8 20 44 / 40%) 100%);
   border-top: 1px solid rgb(255 255 255 / 10%);
   pointer-events: none;
@@ -54,7 +60,6 @@
   gap: 8px;
   min-height: 70px;
   padding: 12px 10px;
-  /* background: linear-gradient(180deg, rgb(0 0 0 / 14%) 0%, rgb(0 0 0 / 70%) 100%); */
   color: #fff;
   text-align: center;
 }
@@ -94,11 +99,31 @@
 }
 
 @media (width >= 600px) {
+  .icon-buttons .icon-buttons-media {
+    position: relative;
+    inset: auto;
+  }
+
+  .icon-buttons .icon-buttons-media picture,
+  .icon-buttons .icon-buttons-media img {
+    height: auto;
+  }
+
   .icon-buttons .icon-buttons-media img {
     min-height: 260px;
   }
 
+  .icon-buttons .icon-buttons-list::before {
+    top: 0;
+    right: 75px;
+    left: 75px;
+    height: clamp(200px, 36%, 260px);
+  }
+
   .icon-buttons .icon-buttons-list {
+    position: absolute;
+    inset: 0;
+    height: auto;
     flex-direction: row;
     align-items: flex-end;
     gap: 12px;
