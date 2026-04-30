@@ -32,10 +32,9 @@ header nav .nav-brand {
   height: 100px;
 }
 
-header nav .nav-logo--desktop,
-header nav .nav-logo--mobile {
+header nav .nav-logo-desktop,
+header nav .nav-logo-mobile {
   display: block;
-  width: 40px;
   height: 40px;
   width: auto;
   flex-shrink: 0;
@@ -106,15 +105,22 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 }
 
 @keyframes nav-slide-down {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 header nav .nav-tools {
   flex-shrink: 0;
 }
 
-@media (max-width: 899px) {
+@media (width <= 899px) {
   header .nav-wrapper {
     position: fixed;
     top: 0;
@@ -139,11 +145,11 @@ header nav .nav-tools {
     flex: 0 0 auto;
   }
 
-  header nav .nav-logo--desktop {
+  header nav .nav-logo-desktop {
     display: none;
   }
 
-  header nav .nav-logo--mobile {
+  header nav .nav-logo-mobile {
     display: block;
   }
 
@@ -159,7 +165,7 @@ header nav .nav-tools {
     width: 100%;
     background-color: #1a1a24;
     padding: 8px 24px 24px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 40%);
     animation: nav-slide-down 0.22s ease forwards;
     z-index: 99;
   }
@@ -174,7 +180,7 @@ header nav .nav-tools {
 
   header nav.nav-open .nav-brand .default-content-wrapper ul li {
     list-style: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgb(255 255 255 / 8%);
   }
 
   header nav.nav-open .nav-brand .default-content-wrapper ul li:last-child {
@@ -189,7 +195,7 @@ header nav .nav-tools {
   }
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   header .nav-wrapper {
     position: relative;
   }
@@ -210,13 +216,13 @@ header nav .nav-tools {
     width: 100%;
   }
 
-  header nav .nav-logo--desktop {
+  header nav .nav-logo-desktop {
     display: block;
     width: 150px;
     height: 85px;
   }
 
-  header nav .nav-logo--mobile {
+  header nav .nav-logo-mobile {
     display: none;
   }
 

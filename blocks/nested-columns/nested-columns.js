@@ -48,38 +48,30 @@ export default async function decorate(block) {
   // Stop at the first non-matching `.section` in each direction.
   const adjacentSections = [];
 
-  let el = containerSection.previousElementSibling;
-  while (isSection(el)) {
-    const side = getNestedColumnSide(el);
+  let cursor = containerSection.previousElementSibling;
+  while (isSection(cursor)) {
+    const side = getNestedColumnSide(cursor);
     if (side) {
-      adjacentSections.unshift(el);
-      el = el.previousElementSibling;
-      continue;
+      adjacentSections.unshift(cursor);
+      cursor = cursor.previousElementSibling;
+    } else if (isSkippableEmptySection(cursor)) {
+      cursor = cursor.previousElementSibling;
+    } else {
+      break;
     }
-
-    if (isSkippableEmptySection(el)) {
-      el = el.previousElementSibling;
-      continue;
-    }
-
-    break;
   }
 
-  el = containerSection.nextElementSibling;
-  while (isSection(el)) {
-    const side = getNestedColumnSide(el);
+  cursor = containerSection.nextElementSibling;
+  while (isSection(cursor)) {
+    const side = getNestedColumnSide(cursor);
     if (side) {
-      adjacentSections.push(el);
-      el = el.nextElementSibling;
-      continue;
+      adjacentSections.push(cursor);
+      cursor = cursor.nextElementSibling;
+    } else if (isSkippableEmptySection(cursor)) {
+      cursor = cursor.nextElementSibling;
+    } else {
+      break;
     }
-
-    if (isSkippableEmptySection(el)) {
-      el = el.nextElementSibling;
-      continue;
-    }
-
-    break;
   }
   // If there are no adjacent column sections, we can still render using any
   // direct block wrappers in the container section.
@@ -110,7 +102,13 @@ export default async function decorate(block) {
   } else if (directChildrenTargetSide === 'left' && !leftSections.length && rightSections.length) {
     directChildrenTargetSide = 'right';
   } else if (!directChildrenTargetSide) {
-    directChildrenTargetSide = leftSections.length ? 'left' : rightSections.length ? 'right' : null;
+    if (leftSections.length) {
+      directChildrenTargetSide = 'left';
+    } else if (rightSections.length) {
+      directChildrenTargetSide = 'right';
+    } else {
+      directChildrenTargetSide = null;
+    }
   }
 
   if (leftColumn) {
@@ -145,7 +143,7 @@ export default async function decorate(block) {
 
   if (directChildren.length && directChildrenTargetSide) {
     const targetColumn = directChildrenTargetSide === 'left' ? leftColumn : rightColumn;
-    directChildren.forEach((el) => targetColumn.appendChild(el));
+    directChildren.forEach((child) => targetColumn.appendChild(child));
   }
 
   // Only append columns that actually have content.

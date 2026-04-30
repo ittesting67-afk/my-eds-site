@@ -97,7 +97,8 @@ export default async function decorate(block) {
     }
   }
 
-  const accordionPrefix = `accordion-${++accordionIdx}`;
+  accordionIdx += 1;
+  const accordionPrefix = `accordion-${accordionIdx}`;
   const accordion = document.createElement('div');
   accordion.className = 'accordion';
   const panelBlocks = [];

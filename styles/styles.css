@@ -13,7 +13,6 @@
 :root {
   --bg-section-gap: 72px;
   --section-gap: var(--size-48);
-
   --max-width-container: calc(100% - 20px);
 
   /* colors */
@@ -21,7 +20,7 @@
   --light-color: #f8f8f8;
   --dark-color: #505050;
   --text-color-dark: #131313;
-  --text-color : #FFFFFF;
+  --text-color : #FFF;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
   --yellow: #FFE600;
@@ -306,10 +305,6 @@ main img {
   object-fit: cover;
 }
 
-.section.image-container picture img {
-  border-bottom: 3px solid #FFE600;
-}
-
 .icon {
   display: inline-block;
   height: 24px;
@@ -319,6 +314,10 @@ main img {
 .icon img {
   height: 100%;
   width: 100%;
+}
+
+.section.image-container picture img {
+  border-bottom: 3px solid #FFE600;
 }
 
 /* sections */

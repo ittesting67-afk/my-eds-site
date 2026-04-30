@@ -2,47 +2,12 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 const MQ_DESKTOP = window.matchMedia('(min-width: 900px)');
+let toggleMenu;
 
 function toggleAllSections(navSections, expanded = false) {
   navSections
     ?.querySelectorAll('.nav-sections .default-content-wrapper > ul > li')
     .forEach((s) => s.setAttribute('aria-expanded', expanded));
-}
-
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const isDesktop = MQ_DESKTOP.matches;
-  const expanded =
-    forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
-
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  nav.classList.toggle('nav-open', !expanded && !isDesktop);
-  document.body.style.overflowY = !expanded && !isDesktop ? 'hidden' : '';
-
-  toggleAllSections(navSections, expanded || isDesktop ? 'false' : 'true');
-
-  const btn = nav.querySelector('.nav-hamburger button');
-  if (btn) btn.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-
-  navSections?.querySelectorAll('.nav-drop').forEach((drop) => {
-    if (isDesktop) {
-      if (!drop.hasAttribute('tabindex')) {
-        drop.setAttribute('tabindex', 0);
-        drop.addEventListener('focus', () =>
-          drop.addEventListener('keydown', onNavDropKeydown)
-        );
-      }
-    } else {
-      drop.removeAttribute('tabindex');
-    }
-  });
-
-  if (!expanded || isDesktop) {
-    window.addEventListener('keydown', onEscapeKey);
-    nav.addEventListener('focusout', onFocusLost);
-  } else {
-    window.removeEventListener('keydown', onEscapeKey);
-    nav.removeEventListener('focusout', onFocusLost);
-  }
 }
 
 function onEscapeKey(e) {
@@ -84,17 +49,50 @@ function onNavDropKeydown(e) {
   focused.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
 }
 
+toggleMenu = function toggleMenuHandler(nav, navSections, forceExpanded = null) {
+  const isDesktop = MQ_DESKTOP.matches;
+  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
+
+  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  nav.classList.toggle('nav-open', !expanded && !isDesktop);
+  document.body.style.overflowY = !expanded && !isDesktop ? 'hidden' : '';
+
+  toggleAllSections(navSections, expanded || isDesktop ? 'false' : 'true');
+
+  const btn = nav.querySelector('.nav-hamburger button');
+  if (btn) btn.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+
+  navSections?.querySelectorAll('.nav-drop').forEach((drop) => {
+    if (isDesktop) {
+      if (!drop.hasAttribute('tabindex')) {
+        drop.setAttribute('tabindex', 0);
+        drop.addEventListener('focus', () => drop.addEventListener('keydown', onNavDropKeydown));
+      }
+    } else {
+      drop.removeAttribute('tabindex');
+    }
+  });
+
+  if (!expanded || isDesktop) {
+    window.addEventListener('keydown', onEscapeKey);
+    nav.addEventListener('focusout', onFocusLost);
+  } else {
+    window.removeEventListener('keydown', onEscapeKey);
+    nav.removeEventListener('focusout', onFocusLost);
+  }
+};
+
 function buildLogos() {
   const desktop = document.createElement('img');
   desktop.src = '/icons/logo-ey-icon.svg';
   desktop.alt = 'EY – Shape the future with confidence';
-  desktop.className = 'nav-logo nav-logo--desktop';
+  desktop.className = 'nav-logo nav-logo-desktop';
 
   const mobile = document.createElement('img');
   mobile.src = '/icons/ey-icon-small.svg';
   mobile.alt = 'EY';
-  mobile.className = 'nav-logo nav-logo--mobile';
-  
+  mobile.className = 'nav-logo nav-logo-mobile';
+
   return { desktop, mobile };
 }
 
