@@ -116,7 +116,6 @@
 }
 
 @media (width >= 768px) {
-
   .hero .hero-content {
     max-width: 1264px;
     padding: 72px 32px;
@@ -135,13 +134,9 @@
 }
 
 @media (width >= 1920px) {
-
   .hero .hero-content {
     max-width: 1264px;
-    padding-top: 112px;
-    padding-bottom: 112px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 112px 32px;
     gap: 20px;
   }
 

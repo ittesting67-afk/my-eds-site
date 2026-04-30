@@ -1,11 +1,11 @@
 .profile-card .profile-card-item {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 16px;
 }
 
 .profile-card .profile-card-media {
-  flex: 0 0 88px;
+  flex: 0 0 91px;
   width: 88px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -58,7 +58,7 @@
   }
 
   .profile-card .profile-card-media {
-    flex-basis: 104px;
+    flex-basis: 171px;
     width: 104px;
   }
 }
